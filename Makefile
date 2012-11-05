@@ -1,0 +1,38 @@
+filename = vorlage
+
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S), Linux)
+	pdflatexcmd = pdflatex
+	pdfviewercmd = evince
+endif
+
+ifeq ($(UNAME_S), Darwin)
+	pdflatexcmd = /usr/texbin/pdflatex
+	pdfviewercmd = open
+endif
+
+
+all: latex clean
+latex:
+	$(pdflatexcmd) $(filename)
+	$(pdflatexcmd) $(filename)
+
+view:
+	if [ -f $(filename).pdf ]; then \
+		$(pdfviewercmd) $(filename).pdf; \
+	else \
+		$(MAKE) all ;\
+		$(MAKE) view ;\
+	fi
+clean:
+	rm $(filename).aux
+	rm $(filename).nav
+	rm $(filename).snm
+	rm $(filename).log
+	rm $(filename).toc
+	rm $(filename).out
+
+distclean:
+	rm $(filename).pdf
+	$(MAKE) clean
