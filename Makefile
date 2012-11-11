@@ -26,13 +26,7 @@ view:
 		$(MAKE) view ;\
 	fi
 clean:
-	rm $(filename).aux
-	rm $(filename).nav
-	rm $(filename).snm
-	rm $(filename).log
-	rm $(filename).toc
-	rm $(filename).out
-
+	git clean -fx
 distclean:
-	rm $(filename).pdf
+	git checkout -f master
 	$(MAKE) clean
