@@ -13,7 +13,7 @@ ifeq ($(UNAME_S), Darwin)
 endif
 
 
-all: latex clean
+all: handout clean
 latex:
 	$(pdflatexcmd) $(filename)
 	$(pdflatexcmd) $(filename)
@@ -25,6 +25,10 @@ view:
 		$(MAKE) all ;\
 		$(MAKE) view ;\
 	fi
+
+handout: latex
+	$(pdflatexcmd) $(filename)-handout
+
 clean:
 	git clean -fx
 distclean:
