@@ -4,7 +4,7 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S), Linux)
 	pdflatexcmd = pdflatex
-	pdfviewercmd = evince
+	pdfviewercmd = atril
 endif
 
 ifeq ($(UNAME_S), Darwin)
@@ -13,7 +13,7 @@ ifeq ($(UNAME_S), Darwin)
 endif
 
 
-all: handout clean
+all: handout clean $(filename).tex
 latex:
 	$(pdflatexcmd) $(filename)
 	$(pdflatexcmd) $(filename)
